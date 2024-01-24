@@ -1,18 +1,13 @@
 ﻿#include <iostream>
 #include <iomanip>
-
+#include <Windows.h>
 using namespace std;
-
-
-
-
-
-
-
 
 int main()
 {
 	setlocale(LC_ALL, "RU");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	int task = 0;
 	cout << "Введите номер задания: " << endl;
 	cin >> task;
@@ -27,33 +22,101 @@ int main()
 
 		cout << "Задание № 1" << endl;
 		cout << "Введите число" << endl;
-		int n = 5;
+		int n ;                   
 		
-		//cin >> n;
-		cout << "10: " << n << endl
-			<< "8: " << oct << n << endl
-			<< "16: " << hex << n << endl;
-
-
-
-	    
-	
+		cin >> n;
+		cout << "8: " << oct << n << endl
+			 << "16: " << hex << n << endl;
+    	
 	break;
 	}
-	case 2:
-	{   cout << "Задание № 2" << endl;
 
+	case 2:
+	{   /*
+		Напишите программу, которая будет запрашивать ввод целого числа и выводить его в формате: 
+		10 знакомест, свободные места заполнить знаком “F”.  
+		Для организации ввода, вывода используйте операторы (cin, cout).
+		*/
+		
+		cout << "Задание № 2" << endl;
+	int num;
+	cout << "Введите целое число: ";
+	cin >> num;
+	cout << "Введенное число: " << setw(10) << setfill('F') << num;
 	
 	break;
 	}
 
 	case 3:
 	{
+		/*
+		Напишите программу, которая будет запрашивать ввод имени и выводить: 
+		“Привет, Введенное_имя!”. Для организации ввода, вывода используйте операторы (cin, cout)
+		*/
 		cout << "Задание № 3" << endl;
-		
+		char name[15];
+		cout << "Введите имя- " << endl;
+		cin >> name;
+		cout << "Привет," << name<< " !"<<endl;
+
 		break;
 	}
 
+	case 4:
+	{
+/*
+Напишите программу, которая запрашивает количество элементов массива, 
+выделяет необходимое количество памяти, запрашивает ввод значений элементов массива с клавиатуры (целые числа). 
+Программа должна вычислить количество чётных и нечётных элементов массива и вывести наибольшее из них 
+(наибольшее количество элементов, чётных или нечётных).
+*/
+		int a;
+		int count_even = 0;
+		int count_not_even = 0;
+		cout<< "Введите количество элементов массива: " << endl;
+		cin >> a;
+		int* arr = new int[a];                     // Выделяем память под массив
+		for (int i = 0; i < a; i++)
+		{
+			cin >> arr[i];
+
+		}
+		cout << endl;
+		for (int i = 0; i < a; i++)                // Для себя вывожу заполненный массив
+		{
+			cout << arr[i] << endl;
+		}
+
+		for (int i = 0; i < a; i++)               // Подсчет количества четных и нечетных
+		{
+			if (arr[i] %2 == 0)
+			{
+				count_even++;
+			}
+			else
+				 count_not_even++;
+			
+		}
+		cout <<"Четных= "<< count_even<< endl;
+		cout <<"Не четных= "<< count_not_even<< endl;
+		if (count_even > count_not_even)
+		{
+			cout << "Больше четных чисел = " << count_even;
+			
+		}
+		if (count_even < count_not_even)
+		{
+			cout << "Больше не четных чисел = " << count_not_even;
+		}
+		if (count_even == count_not_even)
+		{
+			cout << "Четных и нечетных одинаковое количество: " << "Четных= "<<count_even << "  " << "Не четных= " << count_not_even;
+		}
+
+		delete[] arr;
+		
+		break;
+	}
 
 	default:
 		cout << "Нет такого задания!";
